@@ -4,9 +4,9 @@
 
 ### maintained fork of [lmacken/quantumrandom](https://github.com/lmacken/quantumrandom)
 
-This project provides tools for interacting with The ANU Quantum Random Number Generator ([qrng.anu.edu.au](http://qrng.anu.edu.au>`)). It communicates with their JSON API and provides a `qrand` command-line tool, a Python API, and a Linux `/dev/qrand` character device.
+This project provides tools for interacting with The ANU Quantum Random Number Generator ([qrng.anu.edu.au](http://qrng.anu.edu.au>`)). It communicates with their JSON API and provides a `qrand` command-line tool, a Python API, ~~and a Linux `/dev/qrand` character device.~~ (This has to be fixed. Python 2 has reached EOL and the original repo did not support a Python 3 version of this feature).
 
-QuantumRand was made to work with Python 3. Python 2 support has been dropped as it is now End of Life.
+QuantumRand was made to work with Python 3. Python 2 support has been dropped as it is now reached End of Life.
 
 > As of 2.0, QuantumRand has had to adapt to ANU's SSL certificate expiring. QuantumRand is still able to connect via SSL by default, but please be aware that QuantumRand cannot securely validate ANU's SSL authenticity until they update their certificate.
 

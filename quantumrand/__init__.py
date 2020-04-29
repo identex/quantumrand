@@ -37,7 +37,13 @@ try:
 except ImportError:
     import simplejson as json
 
-VERSION = '2.0.0'
+# Until ANU Updates their SSL certificate, we will have to work around it
+# Please contact ANU to let them know their SSL certificate is expired
+# I will update the moment I find out it is valid again
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
+VERSION = '2.0.2'
 URL = 'https://qrng.anu.edu.au/API/jsonI.php'
 DATA_TYPES = ['uint16', 'hex16']
 MAX_LEN = 1024
