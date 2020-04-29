@@ -1,11 +1,10 @@
 from setuptools import setup, find_packages
 import sys
 
-version = '1.9.0'
+version = '2.0.0'
 
-f = open('README.md')
-long_description = f.read()
-f.close()
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 
 requires = ['six']
 if sys.version_info[0] == 2:
@@ -21,7 +20,6 @@ setup(name='quantumrand',
           'Development Status :: 5 - Production/Stable',
           'License :: OSI Approved :: MIT License',
           'Topic :: Scientific/Engineering :: Mathematics',
-          'Programming Language :: Python',
           'Programming Language :: Python :: 3',
       ],
       keywords='quantum random number generator',
@@ -35,6 +33,7 @@ setup(name='quantumrand',
       install_requires=requires,
       test_suite='nose.collector',
       tests_require=['nose', 'mock'],
+      python_requires='>=3.2',
       entry_points="""
         [console_scripts]
         qrand = quantumrand.cmd:main
