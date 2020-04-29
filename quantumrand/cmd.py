@@ -23,7 +23,7 @@ A tool for printing random data from the ANU Quantum Random Number Generator
 from __future__ import print_function
 
 import sys
-import quantumrandom
+import quantumrand
 
 
 def main():
@@ -31,9 +31,9 @@ def main():
              " [--count BLOCKS]") % sys.argv[0]
     generator = None
     if '--binary' in sys.argv or '-b' in sys.argv:
-        generator = quantumrandom.binary
+        generator = quantumrand.binary
     if '--hex' in sys.argv or '-h' in sys.argv:
-        generator = quantumrandom.hex
+        generator = quantumrand.hex
     if '--int' in sys.argv or '-i' in sys.argv:
         # Special case.  Just print one.
         try:
@@ -43,7 +43,7 @@ def main():
             print(usage)
             sys.exit(1)
 
-        print(quantumrandom.randint(min=min, max=max))
+        print(quantumrand.randint(min=min, max=max))
         sys.exit(0)
 
     if not generator:

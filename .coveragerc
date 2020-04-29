@@ -1,5 +1,5 @@
 [run]
-source = quantumrandom
+source = quantumrand
 
 [report]
 exclude_lines =

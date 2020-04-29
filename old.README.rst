@@ -12,8 +12,8 @@ Tools for utilizing the ANU Quantum Random Numbers Server
 
 This project provides tools for interacting with The ANU Quantum Random
 Number Generator (`qrng.anu.edu.au <http://qrng.anu.edu.au>`_). It
-communicates with their JSON API and provides a ``qrandom`` command-line
-tool, a Python API, and a Linux ``/dev/qrandom`` character device.
+communicates with their JSON API and provides a ``qrand`` command-line
+tool, a Python API, and a Linux ``/dev/qrand`` character device.
 
 quantumrandom works on Python 2 and 3.
 
@@ -31,24 +31,24 @@ Command-line tool
 
 ::
 
-    $ qrandom --int --min 5 --max 15
+    $ qrand --int --min 5 --max 15
     7
-    $ qrandom --binary
+    $ qrand --binary
     ���I�%��e(�1��c��Ee�4�������j�Կ��=�^H�c�u
     oq��G��Z�^���fK�0_��h��s�b��AE=�rR~���(�^Q�)4��{c�������X{f��a�Bk�N%#W
     +a�a̙�IB�,S�!ꀔd�2H~�X�Z����R��.f
     ...
-    $ qrandom --hex
+    $ qrand --hex
     1dc59fde43b5045120453186d45653dd455bd8e6fc7d8c591f0018fa9261ab2835eb210e8
     e267cf35a54c02ce2a93b3ec448c4c7aa84fdedb61c7b0d87c9e7acf8e9fdadc8d68bcaa5a
     ...
-    $ qrandom --binary | dd of=data
+    $ qrand --binary | dd of=data
     ^C1752+0 records in
     1752+0 records out
     897024 bytes (897 kB) copied, 77.7588 s, 11.5 kB/s
 
 
-Creating /dev/qrandom
+Creating /dev/qrand
 ---------------------
 
 quantumrandom comes equipped with a multi-threaded character device in
@@ -61,24 +61,24 @@ installed: svn gcc-c++ fuse-devel gccxml libattr-devel. On Fedora 17 and
 newer, you'll also need the kernel-modules-extra package installed for the
 cuse module.
 
-.. note:: The /dev/qrandom character device currently only supports Python2
+.. note:: The /dev/qrand character device currently only supports Python2
 
 ::
 
     pip install ctypeslib==dev hg+https://cusepy.googlecode.com/hg
     sudo modprobe cuse
     sudo chmod 666 /dev/cuse
-    qrandom-dev
-    sudo chmod 666 /dev/qrandom
+    qrand-dev
+    sudo chmod 666 /dev/qrand
 
-By default it will use 3 threads, which can be changed by passing '-t #' into the qrandom-dev.
+By default it will use 3 threads, which can be changed by passing '-t #' into the qrand-dev.
 
 Testing the randomness for `FIPS 140-2 <https://en.wikipedia.org/wiki/FIPS_140-2>`_ compliance
 ----------------------------------------------------------------------------------------------
 
 ::
 
-    $ cat /dev/qrandom | rngtest --blockcount=1000
+    $ cat /dev/qrand | rngtest --blockcount=1000
     rngtest: bits received from input: 20000032
     rngtest: FIPS 140-2 successes: 1000
     rngtest: FIPS 140-2 failures: 0
@@ -95,14 +95,14 @@ You can utilize the `rngtest` tool in pipe mode to ensure that all of your data 
 
 ::
 
-    $ cat /dev/qrandom | rngtest --pipe
+    $ cat /dev/qrand | rngtest --pipe
 
 Adding entropy to the Linux random number generator
 ---------------------------------------------------
 
 ::
 
-    sudo rngd --rng-device=/dev/qrandom --random-device=/dev/random --foreground
+    sudo rngd --rng-device=/dev/qrand --random-device=/dev/random --foreground
 
 Monitoring your available entropy levels
 ----------------------------------------

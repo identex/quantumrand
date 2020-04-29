@@ -6,6 +6,11 @@ python:
   - 2.7
   - 3.2
   - 3.3
+  - 3.4
+  - 3.5
+  - 3.6
+  - 3.7
+  - 3.8
 
 before_install:
   - if [[ $TRAVIS_PYTHON_VERSION != '2.5' ]]; then pip install coverage coveralls --use-mirrors && export HAS_COVERALLS=1; fi
@@ -14,7 +19,7 @@ install:
   - python setup.py install
 
 script:
-  - nosetests -q --with-coverage --cover-erase --cover-package=quantumrandom
+  - nosetests -q --with-coverage --cover-erase --cover-package=quantumrand
 
 after_success:
   - if [[ $HAS_COVERALLS ]]; then coveralls; fi
