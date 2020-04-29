@@ -1,12 +1,14 @@
 # QuantumRand
 
+[![PyPI version](https://badge.fury.io/py/quantumrand.svg)](https://pypi.org/project/quantumrand/) [![PyPI - License](https://img.shields.io/pypi/l/quantumrand)](https://pypi.org/project/quantumrand/) [![Bitcoin](https://img.shields.io/badge/BTC-143TbUxTB9XPqBKu565acFXCHWSdsRLnKK-blue)](https://www.blockchain.com/btc/address/143TbUxTB9XPqBKu565acFXCHWSdsRLnKK)
+
 ### maintained fork of [lmacken/quantumrandom](https://github.com/lmacken/quantumrandom)
 
 This project provides tools for interacting with The ANU Quantum Random Number Generator ([qrng.anu.edu.au](http://qrng.anu.edu.au>`)). It communicates with their JSON API and provides a `qrand` command-line tool, a Python API, and a Linux `/dev/qrand` character device.
 
 QuantumRand was made to work with Python 3. Python 2 support has been dropped as it is now End of Life.
 
-> As of 2.0, QuantumRand has had to adapt to ANU's SSL certificate expiring. We still use SSL by default, but please be aware that QuantumRand cannot validate ANU's SSL authenticity until they update their certificate.
+> As of 2.0, QuantumRand has had to adapt to ANU's SSL certificate expiring. QuantumRand is still able to connect via SSL by default, but please be aware that QuantumRand cannot securely validate ANU's SSL authenticity until they update their certificate.
 
 ## Installation
 
