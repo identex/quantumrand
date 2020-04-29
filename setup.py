@@ -25,7 +25,7 @@ setup(name='quantumrand',
       keywords='quantum random number generator',
       author='Jason Carpenter',
       author_email='brad@identex.co',
-      url='http://github.com/identex/quantumrand',
+      url='https://github.com/identex/quantumrand',
       license='MIT',
       packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
       include_package_data=True,
@@ -33,10 +33,5 @@ setup(name='quantumrand',
       install_requires=requires,
       test_suite='nose.collector',
       tests_require=['nose', 'mock'],
-      python_requires='>=3.2',
-      entry_points="""
-        [console_scripts]
-        qrand = quantumrand.cmd:main
-        qrand-dev = quantumrand.dev:main
-      """,
+      python_requires='>=3.2'
       )
