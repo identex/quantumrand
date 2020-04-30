@@ -37,13 +37,14 @@ try:
 except ImportError:
     import simplejson as json
 
-# Until ANU Updates their SSL certificate, we will have to work around it
-# Please contact ANU to let them know their SSL certificate is expired
-# I will update the moment I find out it is valid again
+# Until ANU Updates their SSL certificate, we will have to work around it.
+# Please contact ANU to let them know their SSL certificate is expired so that
+# they know we are still using this amazing API!
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+# I will update the moment I find out it is valid again
 
-VERSION = '2.0.2'
+VERSION = '2.1.0'
 URL = 'https://qrng.anu.edu.au/API/jsonI.php'
 DATA_TYPES = ['uint16', 'hex16']
 MAX_LEN = 1024
@@ -103,7 +104,7 @@ def hex(array_length=100, block_size=100):
     return ''.join(get_data('hex16', array_length, block_size))
 
 
-def randint(min=0, max=10, generator=None):
+def randfloat(min=0, max=10, generator=None):
     """Return an int between min and max. If given, takes from generator instead.
     This can be useful to reuse the same cached_generator() instance over multiple calls."""
     rand_range = max - min
@@ -131,6 +132,43 @@ def randint(min=0, max=10, generator=None):
             return num / modulos + min
 
 
+def randint(min=0, max=10, generator=None):
+    return int(round(randfloat(min=min-0.5, max=max+0.49, generator=generator)))
+
+
+def list_picker (listx):
+    """Choose a random item from the given list"""
+    length = len(listx) - 1
+    choosen = randint(0, length)
+    return listx[choosen]
+
+
+def dice_roll (d=6, n=1, min=1):
+    """Roll a set number of dice with a set number of sides"""
+    generator = cached_generator()
+    if min > d:
+        raise Exception("The 'min' argument is larger than the max number of 'd'")
+    if n <= 0:
+        raise Exception("The 'n' argument must be greater than 0")
+    dice = []
+    total = 0
+    for x in range(0,n):
+        z = randint(min,d,generator)
+        dice.append(z)
+        total += z
+    return (dice, total)
+
+def quick_dice (d=6, n=1, min=1):
+    """Roll a set number of dice with a set number of sides
+    This roll calculates min and max that can be rolled and makes a quick, single request"""
+    if min > d:
+        raise Exception("The 'min' argument is larger than the max number of 'd'")
+    if n <= 0:
+        raise Exception("The 'n' argument must be greater than 0")
+    return randint(n * min, n * d)
+
+
+
 def uint16(array_length=100):
     """Return a numpy array of uint16 numbers"""
     import numpy
@@ -144,4 +182,4 @@ def cached_generator(data_type='uint16', cache_size=1024):
             yield n
 
 
-__all__ = ['get_data', 'binary', 'hex', 'uint16', 'cached_generator', 'randint']
+__all__ = ['get_data', 'binary', 'hex', 'uint16', 'cached_generator', 'randint', 'list_picker']
