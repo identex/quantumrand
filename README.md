@@ -16,7 +16,7 @@ QuantumRand was made to work with Python 3. Python 2 support has been dropped as
 
 ## Python API
 
-### Low Level API
+### Low Level API Examples
 
 The QuantumRand Python module contains a low-level `get_data`
 function, which is modelled after the ANU Quantum Random Number
@@ -47,11 +47,19 @@ If for some reason the API call is not successful, or the incorrect amount of da
 ['f1d5', '0eb3', '1119', '7cfd', '64ce']
 ```
 
-### High Level API
+### High Level API Examples
 
 Based on the above `get_data` function, quantumrand also provides a bunch
 of higher-level helper functions that make easy to perform a variety of
 tasks.
+
+#### Generate a random intger
+
+* `quantumrand.randfloat(0, 20)`
+
+```
+18.936751354238194
+```
 
 * `quantumrand.randint(0, 20)`
 
@@ -59,17 +67,23 @@ tasks.
 5
 ```
 
+#### Generate random HEX as a string
+
 * `quantumrand.hex()[:10]`
 
 ```
 '8272613343'
 ```
 
-* `quantumrand.binary()[0]`
+#### Generate random binary formatted string
+
+* `quantumrand.binary()[:3]`
 
 ```
-'\xa5'
+'\xa5\x0d\x1e'
 ```
+
+#### The previous `binary()` function returns 10000 bytes
 
 * `len(quantumrand.binary())`
 
@@ -77,20 +91,80 @@ tasks.
 10000
 ```
 
+#### Generate uint16 values as a Numpy array
+
 * `quantumrand.uint16()`
 
 ```
 numpy.array([24094, 13944, 22109, 22908, 34878, 33797, 47221, 21485, 37930, ...], dtype=numpy.uint16)
 ```
 
-* `quantumrand.uint16().data[:10]`
+#### Randomly select an item from a list
+
+* `quantumrand.list_picker(["Mary", "Bill", "Chad", "Nicole"])`
 
 ```
-'\x87\x7fY.\xcc\xab\xea\r\x1c`'
+"Nicole"
 ```
 
+#### Dice rolling
+
+The two main methods are `dice_roll()` and `quick_dice()`
+
+`dice_roll()` returns a tuple where the first value is a list of individual dice rolls, and the second value is the total of the dice rolls.
+
+`quick_dice()` returns an integer with the total dice rolls. This is best for single die rolls and dice rolls you don't need to know the individual rolls of.
+
+Both methods can take 3 optional arguments:
+* `n` is the number of dice to roll (default is `1`)
+* `d` is the number of sides on each die (default is `6`)
+* `min` is the lowest number on the die (default is `1`)
+
+* Roll a single d6 (a standard 6 sided die) and show results
+  * `quantumrand.dice_roll()`
+
+```
+([3], 3)
+```
+
+* Roll a single d20 and show results
+  * `quantumrand.dice_roll(d=20)`
+
+```
+([19], 19)
+```
+
+* Roll two d9 (0-9) and show results
+  * `quantumrand.dice_roll(d=9, n=2, min=0)`
+
+```
+([0,3], 3)
+```
+
+* Roll three d8 and show results
+  * `quantumrand.dice_roll(d=8, n=3)`
+
+```
+([4,8,3], 15)
+```
+
+* Roll three d9 (0-9) and show only the total.
+  * `quantumrand.quick_dice(d=9, n=3, min=0)`
+
+```
+24
+```
+
+* You can roll a die with any number of sides
+  * `quantumrand.quick_dice(d=67)`
+
+```
+1
+```
 
 ## Using the Command Line Tool
+
+### Currently still being fixed!
 
 Getting a random integer within a range:
 
