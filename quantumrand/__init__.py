@@ -182,4 +182,4 @@ def cached_generator(data_type='uint16', cache_size=1024):
             yield n
 
 
-__all__ = ['get_data', 'binary', 'hex', 'uint16', 'cached_generator', 'randint', 'list_picker']
+__all__ = ['get_data', 'binary', 'hex', 'uint16', 'cached_generator', 'randfloat', 'randint', 'list_picker', 'dice_roll', 'quick_dice']
