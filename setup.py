@@ -6,7 +6,7 @@ version = '2.1.1'
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-requires = ['six']
+requires = ['six', 'requests']
 if sys.version_info[0] == 2:
     if sys.version_info[1] in (4, 5):
         requires.append('simplejson < 2.0.10')
