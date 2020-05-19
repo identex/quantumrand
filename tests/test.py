@@ -99,7 +99,7 @@ class TestQuantumRandom(unittest.TestCase):
         from quantumrand.dev import QuantumRandomDevice
         dev = QuantumRandomDevice(num_threads=3)
         dev.read(None, 10000, 0, None)
-        self.assertEquals(len(return_data), 10000)
+        self.assertEqual(len(return_data), 10000)
         dev.release(None, None)
 
 
